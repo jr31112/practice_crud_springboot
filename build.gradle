@@ -38,5 +38,12 @@ repositories {
 // 버전을 적을 시 충돌 문제가 생길 수 있다.
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-websocket')
+//    compile('org.projectlombok:lombok') // 롬복 설치 및 컴파일 - gradle 4 버전
+    // gradle 6 버전
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+    
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompileOnly 'org.projectlombok:lombok:1.18.12'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 }
