@@ -1,0 +1,42 @@
+// gradle 명령으로 수행하는 처리는 build.gradle의 내용을 바탕으로 실행이 된다.
+// 1. 프로젝트의 플러그인 의존성 관리를 위한 설정
+buildscript {
+    // 전역변수 설정, 버전관리
+    ext {
+        springBootVersion = '2.1.7.RELEASE'
+    }
+    // 라이브러리 저장소 종류
+    // mavenCentral이 많이 사용되지만 라이브러리 업로드의 편리성때문에 jcenter로 옮겨간ㄴ 추세
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    // 프로젝트에 필요한 의존성 버전 관리
+    dependencies {
+        // classpath: 컴파일부터 실행시까지 의존하는 라이브러리 지정
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+// 2. 앞서 선언한 플러그인 의존성들을 어떻게 적용할 것인지 결정
+// 자바와 스프링 부트를 사용하기 위한 필수 플러그인 4개
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management' // 스프링 부트의 의존성들을 관리해주는 플러그인, 반드시 추가해야함
+
+// 3. 버전관리
+group 'com.springboot.practice'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+// 4. 의존성 코드 선언
+// 특정 버전을 명시하지 말고 상단 의존성 선언 부분을 따라가게 한다.
+// 버전을 적을 시 충돌 문제가 생길 수 있다.
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-websocket')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
