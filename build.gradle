@@ -21,7 +21,8 @@ buildscript {
 // 자바와 스프링 부트를 사용하기 위한 필수 플러그인 4개
 apply plugin: 'java'
 apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'apply plugin: 'io.spring.dependency-management' // 스프링 부트의 의존성들을 관리해주는 플러그인, 반드시 추가해야함
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management' // 스프링 부트의 의존성들을 관리해주는 플러그인, 반드시 추가해야함
 
 // 3. 버전관리
 group 'com.springboot.practice'
