@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 // assertj의 장점
 // 1. 추가적인 라이브러리가 필요하지 않다(JUnit과 같은 경우 assertThat을 사용하려면 CoreMatchers 라이브러리가 필요하다)
-// 2. wkehddhkstjddl ghkrtlfgl wldnjsdl ehlsek.
+// 2. 자동완성이 확실히 지원이 된다.
 
 public class ResponseDtoTest {
 

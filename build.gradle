@@ -37,13 +37,25 @@ repositories {
 // 특정 버전을 명시하지 말고 상단 의존성 선언 부분을 따라가게 한다.
 // 버전을 적을 시 충돌 문제가 생길 수 있다.
 dependencies {
+    // 기본
     compile('org.springframework.boot:spring-boot-starter-websocket')
-//    compile('org.projectlombok:lombok') // 롬복 설치 및 컴파일 - gradle 4 버전
+
+
+
+
+    // compile('org.projectlombok:lombok') // 롬복 설치 및 컴파일 - gradle 4 버전
     // gradle 6 버전
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
-    
+
+
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    // gradle 6 버전
     testCompileOnly 'org.projectlombok:lombok:1.18.12'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    // JPA(DB와의 연동을 위해 쓰인다 => ORM제공)
+    compile('org.springframework.boot:spring-boot-starter-data-jpa') // 스프링부트용 Spring Data Jpa 추상화 라이브러리, 버전에 맞춰 자동으로 JPA 라이브러리 관리
+    compile('com.h2database:h2') // 인메모리 관계형 데이터 베이스, 별도의 설치 없이 관리 가능, 테스트 용도로 많이 쓰임
 }
