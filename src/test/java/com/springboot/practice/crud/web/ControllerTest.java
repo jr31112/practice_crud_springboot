@@ -6,8 +6,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+
+import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class) // 테스트를 진행할 때 JUnit에 실행자 외에 다른 실행자 실행
@@ -25,5 +28,17 @@ public class ControllerTest {
         mvc.perform(get("/hello")) // MockMvc를 통해 Get 요청 실행
                 .andExpect(status().isOk()) // Http 200 인지 검증
                 .andExpect(content().string(hello)); // 응답 본문의 내용 검증
+    }
+
+    @Test
+    public void hello_dto_test() throws Exception{
+        String name = "kis";
+        int amount = 1000;
+
+        mvc.perform(get("/hello/dto").param("name", name).param("amount", String.valueOf(amount))) // param은 sting만 사용 가능
+
+                .andExpect(status().isOk()) // Http 200 인지 검증ㅠ
+                .andExpect(jsonPath("$.name", is(name))) // 응답 본문의 내용 검증
+                .andExpect(jsonPath("$.amount", is(amount)));
     }
 }
